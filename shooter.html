@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <style>
+            .good-guy {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width:50px;
+            }
+        </style>
+        <script>
+            let topPosition = 0;
+            let leftPosition = 0;
+            let rotation = 0;
+            const movementAmount = 15;
+            function move(direction) {
+                const hero = document.querySelector(".good-guy");
+                if(direction === 'DOWN') {
+                    topPosition = Number(topPosition) + Number(movementAmount);
+                    rotation = 180;
+                }
+                else if(direction === 'UP') {
+                    topPosition = Number(topPosition) - Number(movementAmount);
+                    rotation = 0;
+                }
+                else if (direction === 'RIGHT') {
+                    leftPosition = Number(leftPosition) + Number(movementAmount);
+                    rotation = 90;
+                }
+                else if(direction === 'LEFT') {
+                    leftPosition = Number(leftPosition) - Number(movementAmount);
+                    rotation = 270;
+                }
+                hero.style.top = `${topPosition}px`;
+                hero.style.left = `${leftPosition}px`;
+                hero.style.transform = `rotate(${rotation}deg)`;
+            }
+            window.addEventListener('keydown', function(key) {
+                if(key.which === 40) {
+                    move("DOWN")
+                }
+                else if(key.which === 38) {
+                    move("UP")
+                }
+                else if(key.which === 37) {
+                    move("LEFT");
+                }
+                else if (key.which === 39) {
+                    move("RIGHT");
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <img class="good-guy" src="https://i.imgur.com/WlULJTk.png" />
+    </body>
+</html>
